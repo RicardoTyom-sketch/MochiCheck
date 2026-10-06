@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mochicheck.ui.components.BackpackItemCard
+import com.example.mochicheck.ui.components.Profile
 
 @Composable
 fun MochiCheckScreen(
@@ -24,6 +25,7 @@ fun MochiCheckScreen(
     onItemSelected: (Int) -> Unit,
     onMaxWeightChanged: (Float) -> Unit,
     onClear: () -> Unit,
+    onShowProfile: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -107,7 +109,26 @@ fun MochiCheckScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = "Limpiar mochila")
+
+
+            }
+
+        }
+        item {
+            Profile(
+                name = uiState.name,
+                matricula = uiState.matricula
+            )
+        }
+
+        item {
+            Button(
+                onClick = onShowProfile,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Mostrar perfil")
             }
         }
     }
 }
+

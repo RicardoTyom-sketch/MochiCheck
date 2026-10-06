@@ -40,7 +40,12 @@ class MainActivity : ComponentActivity() {
                         onItemSelected = { itemId ->
                             viewModel.onAction(
                                 MochiCheckAction.ToggleItem(itemId)
+
                             )
+                        },
+                        onShowProfile = {
+                            viewModel.showProfile() //ultima modificacion
+
                         },
 
                         onMaxWeightChanged = { weight ->

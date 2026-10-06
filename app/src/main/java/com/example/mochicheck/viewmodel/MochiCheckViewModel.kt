@@ -47,11 +47,17 @@ class MochiCheckViewModel : ViewModel() {
         }
     }
 
+    fun showProfile() {
+        _uiState.value = _uiState.value.copy(
+            name = "Ricardo Alfonso Ruiz Sol",
+            matricula = "253465"
+        )
+    }
+
     private fun toggleItem(itemId: Int) {
         val currentState = _uiState.value
 
         val updatedItems = currentState.items.map { item ->
-
             if (item.id == itemId) {
                 item.copy(
                     isSelected = !item.isSelected
@@ -63,7 +69,9 @@ class MochiCheckViewModel : ViewModel() {
 
         _uiState.value = calculateState(
             items = updatedItems,
-            maxWeightKg = currentState.maxWeightKg
+            maxWeightKg = currentState.maxWeightKg,
+            name = currentState.name,
+            matricula = currentState.matricula
         )
     }
 
@@ -72,7 +80,9 @@ class MochiCheckViewModel : ViewModel() {
 
         _uiState.value = calculateState(
             items = currentState.items,
-            maxWeightKg = weightKg
+            maxWeightKg = weightKg,
+            name = currentState.name,
+            matricula = currentState.matricula
         )
     }
 
@@ -87,13 +97,17 @@ class MochiCheckViewModel : ViewModel() {
 
         _uiState.value = calculateState(
             items = clearedItems,
-            maxWeightKg = currentState.maxWeightKg
+            maxWeightKg = currentState.maxWeightKg,
+            name = currentState.name,
+            matricula = currentState.matricula
         )
     }
 
     private fun calculateState(
         items: List<BackpackItem>,
-        maxWeightKg: Float
+        maxWeightKg: Float,
+        name: String = "",
+        matricula: String = ""
     ): MochiCheckUiState {
 
         val selectedItems =
@@ -126,7 +140,6 @@ class MochiCheckViewModel : ViewModel() {
                 ?.name ?: ""
 
         val loadLevel = when {
-
             selectedItems.isEmpty() ->
                 LoadLevel.EMPTY
 
@@ -150,7 +163,9 @@ class MochiCheckViewModel : ViewModel() {
             progress = progress,
             selectedCount = selectedItems.size,
             heaviestItem = heaviestItem,
-            loadLevel = loadLevel
+            loadLevel = loadLevel,
+            name = name,
+            matricula = matricula
         )
     }
 }

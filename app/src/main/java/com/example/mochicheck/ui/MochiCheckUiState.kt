@@ -9,5 +9,7 @@ data class MochiCheckUiState(
     val progress: Float = 0f,
     val selectedCount: Int = 0,
     val heaviestItem: String = "",
-    val loadLevel: LoadLevel = LoadLevel.EMPTY
+    val loadLevel: LoadLevel = LoadLevel.EMPTY,
+    val name: String = "",
+    val matricula: String = "",
 )
